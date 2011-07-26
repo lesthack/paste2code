@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} New Code {% endblock %}
+
+{% block content %}
+	<form method="POST" action="" name="form_code" id="form_code">
+		<div class="row_form">
+			<label for="author">Nombre:</label>
+			<input type="text" name="author" id="author" class="text" size="20" />
+		</div>
+		
+		<div class="row_form">
+			<label for="description">Descripción:</label>
+			<input type="text" name="description" id="description" class="text" size="50" />
+		</div>
+		
+		<div class="row_form">
+			<label for="language">Lenguaje:</label>
+			<select id="">
+				<optgroup label="Native">
+					<option value="Cpp">C</option>
+					<option value="Cpp">C++</option>
+					<option value="CSharp">C#</option>
+					<option value="Delphi">Delphi</option>
+					<option value="Java">Java</option>
+				</optgroup>
+				<optgroup label="Scripts">
+					<option value="JScript">Javascript</option>
+					<option value="Php">PHP</option>
+					<option value="Python">Python</option>
+					<option value="Ruby">Ruby</option>
+				</optgroup>
+				<optgroup label="Web">
+					<option value="Css">CSS</option>
+					<option value="Php">PHP</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option value="Sql">SQL</option>
+					<option value="Vb">VB</option>
+					<option value="Xml">XML</option>
+				</optgroup>
+			</select>
+		</div>
+		
+		<div class="row_form">
+			<label for="">Código</label>
+			<textarea name="" id=""></textarea>
+		</div>			
+		
+		<div class="right row_form">
+			<input type="submit" value="Pegar" name="" class="button" />
+		</div>
+	</form>
+{% endblock %}	

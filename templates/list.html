@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} Codelist {% endblock %}
+
+{% block content %}
+	<div id="list_form">
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies nisl sed justo porttitor placerat. Praesent congue ante pharetra risus sollicitudin vitae vehicula nisl pulvinar.
+	</p>
+	<table cellpadding="0">
+		<thead> 
+			<tr>
+				<th width="15%">Code</th>
+				<th width="15%">Autor</th>
+				<th width="50%">Descripción</th>
+				<th width="10%">Lenguaje</th>
+				<th width="10%">Creado</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for code in codes %}		
+			<tr class="one">
+				<td><a href="/code/Test.c">Test.C</a></td>
+				<td>Lesthack</td>
+				<td>Teste code for samples</td>
+				<td>C</td>
+				<td align="center">1 Dic 2010 </td>
+			</tr>
+			<tr>
+				<td><a href="/code/Sample.py">Sample.py</a></td>
+				<td>Lesthack</td>
+				<td>Teste code for samples in Python</td>
+				<td>Python</td>
+				<td align="center">1 Dic 2010 </td>
+			</tr>		
+			{% endfor %}
+		</tbody>
+	</table>
+	<div method="POST" action="" id="controls_page">
+		<a href="#">first</a> <a href="#">back</a> <a href="#">next</a> <a href="#">last</a>
+	</div>
+</div>
+{% endblock %}

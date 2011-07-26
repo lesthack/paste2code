@@ -1,0 +1,132 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	
+} 
+html, body{ 
+	background: #DDD;
+	font-family: "Droid Sans Mono", Helvetica, serif; 
+	font-size: 12px; 
+}
+a {
+	text-decoration: none;
+}
+#menu{
+	position: absolute;
+	top: 100px;
+	left: 0px;
+}
+#menu a{
+	display: block;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #444;
+	font-weight: bold;
+	background: #DDD;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	
+}
+#menu a:hover{
+	background: #CCC;
+}
+#panel_head{
+	position: absolute;
+	top: 0px;
+	right: 60px;
+}
+#panel_code{
+	position: absolute;
+	top: 50px;
+	left: 150px;
+	right: 50px;
+	bottom: 20px;
+	background: #fff;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	overflow: auto;
+}
+#panel_code .code{
+	
+}
+#list_form {
+	margin: 15px;
+	margin-top: 25px;
+} 
+#list_form p{
+	width: 95%;
+	text-align: justify;
+}
+#list_form table{
+	font-size: 12px;
+	width: 95%;
+	cursor: default;
+}
+#list_form table tbody tr.one{
+	background: #EEE;
+}
+#list_form table tbody tr:hover{
+	background: #DDD;
+}
+#list_form table tbody td{
+	padding-left: 15px;
+}
+#list_form table tbody td a{
+	color: blue;
+}
+#list_form table tbody tr:hover a{
+	color: green;
+}
+#controls_page{
+	width: 95%;
+	text-align: right;
+	margin-top: 10px;
+}
+#form_code{
+	margin: 15px;
+}
+form label{
+	display: block;
+	
+}
+form input.text{
+	border: 1px solid #DDD;
+	padding: 4px 10px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+form input.text:focus{
+	border:1px solid #BBB;
+}
+form input.button{
+	border: 1px solid #BBB;
+	background: #DDD;
+	margin: 5px;
+	padding: 4px 15px;
+}
+form input.button:hover{
+	background: #CCC;
+}
+form input.button:active{
+	background: #AAA;
+}
+form select{
+	padding: 4px 0px;
+	background: #fff;
+	border:1px solid #DDD;
+}
+form select:focus{
+	border:1px solid #BBB;
+}
+form select optgroup option{
+	margin-left: 15px;
+	color: blue;
+}
+form textarea{
+	border:1px solid #DDD;
+	width: 95%;
+	height: 400px;
+}
+form textarea:focus{
+	border:1px solid #BBB;
+}
