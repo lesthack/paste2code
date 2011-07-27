@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  ServerName paste2code.pandora.org
+  ServerAdmin jhernandez@s3.com.mx
+  <Location "/">
+    SetHandler python-program
+    PythonHandler django.core.handlers.modpython
+    SetEnv DJANGO_SETTINGS_MODULE paste2code.settings
+    PythonDebug On
+    PythonPath "['/home/lesthack/workspace/paste2code','/home/lesthack/workspace/paste2code/paste2code'] + sys.path"
+  </Location>
+</VirtualHost>
