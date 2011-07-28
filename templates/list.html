@@ -18,21 +18,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for code in codes %}		
+			{% for codigo in codigos %}		
 			<tr class="one">
-				<td><a href="/code/Test.c">Test.C</a></td>
-				<td>Lesthack</td>
-				<td>Teste code for samples</td>
-				<td>C</td>
-				<td align="center">1 Dic 2010 </td>
-			</tr>
-			<tr>
-				<td><a href="/code/Sample.py">Sample.py</a></td>
-				<td>Lesthack</td>
-				<td>Teste code for samples in Python</td>
-				<td>Python</td>
-				<td align="center">1 Dic 2010 </td>
-			</tr>		
+				<td><a href="/code/{{ codigo.id }}/{{ codigo.name }}">{{ codigo.name }}</a></td>
+				<td>{{ codigo.owner }}</td>
+				<td>{{ codigo.description }}</td>
+				<td>{{ codigo.language }}</td>
+				<td align="center">{{ codigo.date }}</td>
+			</tr>				
 			{% endfor %}
 		</tbody>
 	</table>

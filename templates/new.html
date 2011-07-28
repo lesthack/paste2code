@@ -5,10 +5,13 @@
 {% block content %}
 	<form method="POST" action="" name="form_code" id="form_code">
 		<div class="row_form">
-			<label for="author">Nombre:</label>
-			<input type="text" name="author" id="author" class="text" size="20" />
+			<label for="name">Nombre:</label>			
+			{{ form.name }}
 		</div>
-		
+		<div class="row_form">
+			<label for="owner">Autor:</label>			
+			{{ form.owner }}
+		</div>
 		<div class="row_form">
 			<label for="description">Descripción:</label>
 			<input type="text" name="description" id="description" class="text" size="50" />
@@ -44,11 +47,11 @@
 		
 		<div class="row_form">
 			<label for="">Código</label>
-			<textarea name="" id=""></textarea>
+			{{ form.code }}
 		</div>			
 		
 		<div class="right row_form">
 			<input type="submit" value="Pegar" name="" class="button" />
-		</div>
+		</div>			
 	</form>
 {% endblock %}	

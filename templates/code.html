@@ -3,101 +3,11 @@
 {% block title %} code {% endblock %}
 
 {% block content %}
+	
 	<div class="code">
-		<pre name="code" class="python">				
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import os
-import xmmsclient
-import twitter
-
-
-class engine(xmmsclient.XMMS):
-        def __init__(self):
-                self.stateConnection = False
-                self.handleDisconnect = None
-                self.cfg_filter = None
-                self.cfg_mode = None
-                self.user = None
-                self.password = None
-                self.mytwitter = twitter.Api()
-                self.conectiontwitter = 0
-                self.filters = ["artist","title","album","url","sample_format","mime"]
-                self.xmmsConnenct()
-        
-        def xmmsConnenct(self):
-                """
-                        Conecta con XMMS2
-                """
-                try:
-                        self.connect(os.getenv("XMMS_PATH"))
-                except IOError, detail:
-                        self.stateConnection = False
-                        print "Connection failed:", detail
-                        return 
-
-                self.stateConnection = True
-                
-
-        def isConnected(self):
-                """
-                        Retorna el estado del reproductor
-                """
-                return self.stateConnection
-                
-        def setFilter(self, cfg_filter):
-                self.cfg_filter = cfg_filter
-        
-        def setMode(self, cfg_mode):
-                self.cfg_mode = cfg_mode
-        
-        def onChange(self, result):
-                if self.cfg_mode == '0':
-                        self.medialib_get_info(result.value(), self.setTrack)
-
-        def onTweetSong(self, result):
-                if self.cfg_mode == '1':
-                        self.medialib_get_info(result.value(), self.setTrack)
-        
-        def setTrack(self, result):
-                message = self.__getMessage(result.value())
-                if self.isConnectTwitter() == 1:
-                        self.sendTweet(message)
-
-        def __getMessage(self, track):
-                message = self.cfg_filter[:]
-                for filt in self.filters:
-                        try: message = message.replace("%"+filt,track[filt])
-                        except: message = message.replace("%"+filt,"No Data")
-                return message
-                        
-        def loginTwitter(self, user, password):
-                try:
-                        self.user = user
-                        self.password = password
-                        self.mytwitter = twitter.Api(self.user,self.password)
-                        self.mytwitter.GetFriends()
-                        self.conectiontwitter = 1
-                        return True
-                except:
-                        return False
-        
-        def unloginTwitter(self):
-                self.conectiontwitter = 2
-        
-        def isConnectTwitter(self):
-                return self.conectiontwitter
-                
-        def sendTweet(self, message):
-                try:
-                        status = self.mytwitter.PostUpdate(message)
-                        print status.text
-                except:
-                        print "Log: Can't to send message",message				
-		</pre>
+		<pre name="code" class="{{ codigo.language }}">{{ codigo.code }}</pre>
 	</div>	
-	<script class="javascript" src="/media/javascript/shBrushPython.js"></script>
+	<script class="javascript" src="/media/javascript/{{ language }}"></script>
 	<script class="javascript">
       if(window.isBloggerMode == true)
       dp.SyntaxHighlighter.BloggerMode();
