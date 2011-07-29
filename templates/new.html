@@ -3,54 +3,37 @@
 {% block title %} New Code {% endblock %}
 
 {% block content %}
-	<form method="POST" action="" name="form_code" id="form_code">
+	<form method="post" action="/add/" name="form_code" id="form_code">{% csrf_token %}			
 		<div class="row_form">
 			<label for="name">Nombre:</label>			
-			{{ form.name }}
+			{{ form_code.name }}
+			{{ form_code.name.errors }}
+		</div>
+		<div class="row_form">
+			<label for="language">Lenguaje:</label>
+			{{ form_code.language }}
+			{{ form_code.language.errors }}
 		</div>
 		<div class="row_form">
 			<label for="owner">Autor:</label>			
-			{{ form.owner }}
+			{{ form_code.owner }}
+			{{ form_code.owner.errors }}
 		</div>
 		<div class="row_form">
 			<label for="description">Descripción:</label>
-			<input type="text" name="description" id="description" class="text" size="50" />
+			{{ form_code.description }}
+			{{ form_code.description.errors }}
 		</div>
-		
-		<div class="row_form">
-			<label for="language">Lenguaje:</label>
-			<select id="">
-				<optgroup label="Native">
-					<option value="Cpp">C</option>
-					<option value="Cpp">C++</option>
-					<option value="CSharp">C#</option>
-					<option value="Delphi">Delphi</option>
-					<option value="Java">Java</option>
-				</optgroup>
-				<optgroup label="Scripts">
-					<option value="JScript">Javascript</option>
-					<option value="Php">PHP</option>
-					<option value="Python">Python</option>
-					<option value="Ruby">Ruby</option>
-				</optgroup>
-				<optgroup label="Web">
-					<option value="Css">CSS</option>
-					<option value="Php">PHP</option>
-				</optgroup>
-				<optgroup label="Other">
-					<option value="Sql">SQL</option>
-					<option value="Vb">VB</option>
-					<option value="Xml">XML</option>
-				</optgroup>
-			</select>
-		</div>
-		
 		<div class="row_form">
 			<label for="">Código</label>
-			{{ form.code }}
+			{{ form_code.code }}
+			{{ form_code.code.errors }}
 		</div>			
 		
 		<div class="right row_form">
+			{% for hidden in form_code.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
 			<input type="submit" value="Pegar" name="" class="button" />
 		</div>			
 	</form>
