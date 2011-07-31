@@ -1,6 +1,7 @@
-from django.forms import ModelForm, TextInput, Textarea, HiddenInput
+from django.forms import ModelForm, TextInput, Textarea, HiddenInput 
 from django import forms
 from django.db import models
+import datetime
 
 class language(models.Model):
 	name = models.CharField(max_length=50)	
@@ -8,11 +9,11 @@ class language(models.Model):
 		return self.name
 
 class codes(models.Model):	
-	owner = models.CharField(max_length=100)
-	name = models.CharField(max_length=200) 
-	description = models.CharField(max_length=500)
+	owner = models.CharField(max_length=100, blank=True)
+	name = models.CharField(max_length=200, blank=True) 
+	description = models.CharField(max_length=500, blank=True)
 	code = models.TextField()
-	date = models.DateField()
+	date = models.DateTimeField()
 	language = models.ForeignKey(language)
 
 	def __str__(self):
@@ -26,7 +27,7 @@ class codesForm(ModelForm):
 			'name': TextInput(attrs={'class':'text', 'size':'20'}),
 			'owner': TextInput(attrs={'class':'text', 'size':'20'}),
 			'description': TextInput(attrs={'class':'text', 'size':'50'}),
-			'code': Textarea(),
+			'code': Textarea(attrs={'class':'textarea'}),
 			'date': HiddenInput(),
 		}
 

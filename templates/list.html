@@ -2,25 +2,23 @@
 
 {% block title %} Codelist {% endblock %}
 
-{% block content %}
+{% block content %}	
 	<div id="list_form">
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies nisl sed justo porttitor placerat. Praesent congue ante pharetra risus sollicitudin vitae vehicula nisl pulvinar.
-	</p>
+	<p></p>
 	<table cellpadding="0">
 		<thead> 
 			<tr>
 				<th width="15%">Code</th>
 				<th width="15%">Autor</th>
-				<th width="50%">Descripción</th>
+				<th width="45%">Descripción</th>
 				<th width="10%">Lenguaje</th>
-				<th width="10%">Creado</th>
+				<th width="15%">Creado</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for codigo in codigos %}		
+			{% for codigo in codigos.object_list %}		
 			<tr class="one">
-				<td><a href="/code/{{ codigo.id }}/{{ codigo.name }}">{{ codigo.name }}</a></td>
+				<td><a href="/code/{{ codigo.id }}/">{% if codigo.name|length > 0 %} {{ codigo.name }} {% else %} untitled {% endif %}</a></td>
 				<td>{{ codigo.owner }}</td>
 				<td>{{ codigo.description }}</td>
 				<td>{{ codigo.language }}</td>
@@ -30,7 +28,16 @@
 		</tbody>
 	</table>
 	<div method="POST" action="" id="controls_page">
-		<a href="#">first</a> <a href="#">back</a> <a href="#">next</a> <a href="#">last</a>
+		<a href="?page=1">first</a>
+		{% if codigos.has_previous %}
+		<a href="?page={{ codigos.previous_page_number }}">back</a>
+		{% endif %}
+		{% if codigos.has_next %}
+		<a href="?page={{ codigos.next_page_number }}">next</a> 
+		{% endif %}
+		{% if not codigos.number = last_pages %}		
+		<a href="?page={{ last_pages }}">last</a>
+		{% endif %}		
 	</div>
 </div>
 {% endblock %}

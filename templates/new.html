@@ -5,36 +5,41 @@
 {% block content %}
 	<form method="post" action="/add/" name="form_code" id="form_code">{% csrf_token %}			
 		<div class="row_form">
-			<label for="name">Nombre:</label>			
+			<label for="name">Name:</label>			
 			{{ form_code.name }}
 			{{ form_code.name.errors }}
 		</div>
 		<div class="row_form">
-			<label for="language">Lenguaje:</label>
-			{{ form_code.language }}
-			{{ form_code.language.errors }}
+			<label for="language">Language:
+			{% if form_code.language.errors|length > 0 %}
+			<span class="errors">(Please, select language)<span>
+			{% endif %}
+			</label>
+			{{ form_code.language }}			
 		</div>
 		<div class="row_form">
-			<label for="owner">Autor:</label>			
+			<label for="owner">Author:</label>			
 			{{ form_code.owner }}
 			{{ form_code.owner.errors }}
 		</div>
 		<div class="row_form">
-			<label for="description">Descripción:</label>
+			<label for="description">Description:</label>
 			{{ form_code.description }}
 			{{ form_code.description.errors }}
 		</div>
 		<div class="row_form">
-			<label for="">Código</label>
-			{{ form_code.code }}
-			{{ form_code.code.errors }}
-		</div>			
-		
+			<label for="">Code:
+			{% if form_code.code.errors|length > 0 %}
+			<span class="errors">(Please, paste your code)<span>
+			{% endif %}
+			</label>
+			{{ form_code.code }}			
+		</div>					
 		<div class="right row_form">
 			{% for hidden in form_code.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
 			<input type="submit" value="Pegar" name="" class="button" />
-		</div>			
+		</div>
 	</form>
 {% endblock %}	
