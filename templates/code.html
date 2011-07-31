@@ -3,8 +3,14 @@
 {% block title %} code {% endblock %}
 
 {% block content %}
-	
 	<div class="code">
+		<div class="info">
+			<p><b>Name:</b> {% if codigo.name|length > 0 %} {{ codigo.name }} {% else %} untitled {% endif %}</p>
+			<p><b>Author:</b> {% if codigo.owner|length > 0 %} {{ codigo.owner }} {% else %} untitled {% endif %}</p>
+			<p><b>Description:</b> {{ codigo.description }}</p>
+			<p><b>Language:</b> {{ codigo.language }}</p>
+			<p><b>Link:</b> <a href="http://paste2code.gabrielle.org/code/{{ codigo.id }}">http://paste2code.gabrielle.org/code/{{ codigo.id }}</a></p>
+		</div>
 		<pre name="code" class="{{ codigo.language }}">{{ codigo.code }}</pre>
 	</div>	
 	<script class="javascript" src="/media/javascript/{{ language }}"></script>

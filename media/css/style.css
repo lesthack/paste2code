@@ -77,10 +77,12 @@ a {
 #list_form table tbody tr:hover a{
 	color: green;
 }
-#controls_page{
+#paginator{
 	width: 95%;
 	text-align: right;
 	margin-top: 10px;
+	position: absolute;
+	bottom: 10px;
 }
 #form_code{
 	margin: 15px;
@@ -156,4 +158,8 @@ div.row_form{
 }
 div.row_form .errors{	
 	color: red;
+}
+div.info{
+	margin-left: 20px;
+	margin-top: 10px;
 }

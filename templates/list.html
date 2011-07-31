@@ -27,7 +27,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
-	<div method="POST" action="" id="controls_page">
+	<div id="paginator">
 		<a href="?page=1">first</a>
 		{% if codigos.has_previous %}
 		<a href="?page={{ codigos.previous_page_number }}">back</a>
@@ -38,6 +38,6 @@
 		{% if not codigos.number = last_pages %}		
 		<a href="?page={{ last_pages }}">last</a>
 		{% endif %}		
-	</div>
+	</div>	
 </div>
 {% endblock %}

@@ -51,7 +51,7 @@ def add(request):
 	
 def list(request):
 	codigos = codes.objects.all().order_by('-date','name')
-	paginator = Paginator(codigos, 10)
+	paginator = Paginator(codigos, 100)
 	
 	page = request.GET.get('page')
 	
