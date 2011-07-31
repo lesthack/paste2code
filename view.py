@@ -65,13 +65,14 @@ def list(request):
 	return render_to_response('list.html', {'codigos':codigos, 'last_pages':last_pages})
 
 def code(request, request_id):
-    global language
+	global language
     
-    try:
-        codigo = codes.objects.get(id=request_id)
-        return render_to_response('code.html', {"codigo":codigo, "language": lenguajes[codigo.language.name]})
-    except:
-        return render_to_response('list.html', {'codigos': codes.objects.all()})
+	try:
+		current_site = request.build_absolute_uri()
+		codigo = codes.objects.get(id=request_id)
+		return render_to_response('code.html', {"codigo":codigo, "language": lenguajes[codigo.language.name], "url":current_site})
+	except:
+		return render_to_response('list.html', {'codigos': codes.objects.all()})
     
 def about(request):
 	return render_to_response('about.html', {})
