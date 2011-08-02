@@ -38,6 +38,7 @@
 		<div class="right row_form">
 			{% for hidden in form_code.hidden_fields %}
 				{{ hidden }}
+				{{ hidden.errors }}
 			{% endfor %}
 			<input type="submit" value="Pegar" name="" class="button" />
 		</div>

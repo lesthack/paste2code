@@ -1,7 +1,7 @@
 from django.forms import ModelForm, TextInput, Textarea, HiddenInput 
 from django import forms
 from django.db import models
-import datetime
+from time import strftime
 
 class language(models.Model):
 	name = models.CharField(max_length=50)	
@@ -22,7 +22,7 @@ class codes(models.Model):
 class codesForm(ModelForm):
 	class Meta:
 		model = codes
-		fields = ('owner', 'name', 'description', 'code', 'language', 'date')		
+		fields = ('owner', 'name', 'description', 'code', 'language','date')		
 		widgets = {
 			'name': TextInput(attrs={'class':'text', 'size':'20'}),
 			'owner': TextInput(attrs={'class':'text', 'size':'20'}),
@@ -30,7 +30,10 @@ class codesForm(ModelForm):
 			'code': Textarea(attrs={'class':'textarea'}),
 			'date': HiddenInput(),
 		}
-
+		
+	def clean_date(self):
+		return strftime("%Y-%m-%d %H:%M:%S")		
+			
 class languageForm(ModelForm):
 	class Meta:
 		model = language
