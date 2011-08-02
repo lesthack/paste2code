@@ -30,7 +30,8 @@ lenguajes = {
  
 @csrf_protect
 def new(request):
-	form_codes = codesForm(initial={'date':strftime("%Y-%m-%d %H:%M:%S")})
+	#form_codes = codesForm(initial={'date':strftime("%Y-%m-%d %H:%M:%S")})
+	form_codes = codesForm()
 	
 	return render_to_response("new.html", {'form_code':form_codes},
                                context_instance=RequestContext(request))

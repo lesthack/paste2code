@@ -13,7 +13,7 @@ class codes(models.Model):
 	name = models.CharField(max_length=200, blank=True) 
 	description = models.CharField(max_length=500, blank=True)
 	code = models.TextField()
-	date = models.DateTimeField()
+	date = models.DateTimeField(default=strftime("%Y-%m-%d %H:%M:%S"))
 	language = models.ForeignKey(language)
 
 	def __str__(self):
@@ -22,13 +22,12 @@ class codes(models.Model):
 class codesForm(ModelForm):
 	class Meta:
 		model = codes
-		fields = ('owner', 'name', 'description', 'code', 'language','date')		
+		fields = ('owner', 'name', 'description', 'code', 'language')		
 		widgets = {
 			'name': TextInput(attrs={'class':'text', 'size':'20'}),
 			'owner': TextInput(attrs={'class':'text', 'size':'20'}),
 			'description': TextInput(attrs={'class':'text', 'size':'50'}),
 			'code': Textarea(attrs={'class':'textarea'}),
-			'date': HiddenInput(),
 		}
 		
 	def clean_date(self):
