@@ -148,7 +148,7 @@ form select optgroup option{
 form textarea.textarea{
 	border:1px solid #DDD;
 	width: 95%;
-	height: 400px;
+	height: 350px;
 }
 form textarea:focus{
 	border:1px solid #BBB;
