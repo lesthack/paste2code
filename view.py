@@ -9,6 +9,9 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 from pub.models import *
 from time import strftime
  
@@ -77,9 +80,14 @@ def code(request, request_id):
     global language
     
     try:
+        
         current_site = request.build_absolute_uri()
         codigo = codes.objects.get(id=request_id)
-        return render_to_response('code.html', {"codigo":codigo, "language": lenguajes[codigo.language.name], "url":current_site})
+        lexer = get_lexer_by_name(codigo.language.name, stripall=True)
+        formatter = HtmlFormatter()
+        codigo.code = highlight(codigo.code, lexer, formatter)
+        
+        return render_to_response('code.html', {"codigo":codigo , "url":current_site})
     except:
         return render_to_response('list.html', {'codigos': codes.objects.all()})
     
