@@ -29,52 +29,59 @@ lenguajes = {
 }
  
 @csrf_protect
-def new(request):
-	#form_codes = codesForm(initial={'date':strftime("%Y-%m-%d %H:%M:%S")})
-	form_codes = codesForm()
-	
-	return render_to_response("new.html", {'form_code':form_codes},
+def new(request):    
+    form_codes = codesForm()
+    
+    return render_to_response("new.html", {'form_code':form_codes},
                                context_instance=RequestContext(request))
 @csrf_protect
 def add(request):
-	global language
-	
-	if request.method == "POST":
-		form_codes = codesForm(request.POST)
-				
-		if form_codes.is_valid():
-			code = form_codes.save()
-			return HttpResponseRedirect('/code/%d/' % code.id)
-	else:
-		form_codes = codesForm()
-		
-	return render_to_response("new.html", {'form_code':form_codes},
-                               context_instance=RequestContext(request))
-	
-def list(request):
-	codigos = codes.objects.all().order_by('-date','name')
-	paginator = Paginator(codigos, 30)
-	
-	page = request.GET.get('page')
-	
-	if page == None:
-		codigos = paginator.page(1)
-	else:
-		codigos = paginator.page(page)
-	
-	last_pages = paginator.num_pages
-		
-	return render_to_response('list.html', {'codigos':codigos, 'last_pages':last_pages})
-
-def code(request, request_id):
-	global language
+    global language
     
-	try:
-		current_site = request.build_absolute_uri()
-		codigo = codes.objects.get(id=request_id)
-		return render_to_response('code.html', {"codigo":codigo, "language": lenguajes[codigo.language.name], "url":current_site})
-	except:
-		return render_to_response('list.html', {'codigos': codes.objects.all()})
+    if request.method == "POST":
+        form_codes = codesForm(request.POST)
+                
+        if form_codes.is_valid():
+            code = form_codes.save()
+            return HttpResponseRedirect('/code/%d/' % code.id)
+    else:
+        form_codes = codesForm()
+        
+    return render_to_response("new.html", {'form_code':form_codes},
+                               context_instance=RequestContext(request))
+    
+def list(request):
+    codigos = codes.objects.all().order_by('-date','name')
+    paginator = Paginator(codigos, 30)
+    
+    page = request.GET.get('page')
+    
+    if page == None:
+        codigos = paginator.page(1)
+    else:
+        codigos = paginator.page(page)
+    
+    last_pages = paginator.num_pages
+        
+    return render_to_response('list.html', {'codigos':codigos, 'last_pages':last_pages})
+
+def fork(request, request_id):
+    codigo = codes.objects.get(id=request_id)    
+    form_codes = codesForm(initial={"code":codigo.code, 
+                                    "language":codigo.language})
+    
+    return render_to_response("new.html", {'form_code':form_codes},
+                               context_instance=RequestContext(request))
+                               
+def code(request, request_id):
+    global language
+    
+    try:
+        current_site = request.build_absolute_uri()
+        codigo = codes.objects.get(id=request_id)
+        return render_to_response('code.html', {"codigo":codigo, "language": lenguajes[codigo.language.name], "url":current_site})
+    except:
+        return render_to_response('list.html', {'codigos': codes.objects.all()})
     
 def about(request):
-	return render_to_response('about.html', {})
+    return render_to_response('about.html', {})

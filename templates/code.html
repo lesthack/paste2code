@@ -10,8 +10,9 @@
 			<p><b>Description:</b> {{ codigo.description }}</p>
 			<p><b>Language:</b> {{ codigo.language }}</p>
 			<p><b>Link:</b> <a href="{{ url }}">{{ url }}</a></p>
+                              <p><b>Fork:</b> <a href="/fork/{{ codigo.id }}/">Create Fork</a></p>
 		</div>
-		<pre name="code" class="{{ codigo.language }}">{{ codigo.code }}</pre>
+		<pre name="code" class="{{ codigo.language }}">{{ codigo.code }}</pre>                    
 	</div>	
 	<script class="javascript" src="/media/javascript/{{ language }}"></script>
 	<script class="javascript">
